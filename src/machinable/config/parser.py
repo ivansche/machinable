@@ -49,8 +49,7 @@ class ModuleClass(object):
         except ImportError as e:
             if default is None:
                 raise ImportError(
-                    f"Could not import module '{self.module_name}' "
-                    f"that is specified in the machinable.yaml. "
+                    f"Could not import specified module '{self.module_name}'. "
                     f"The following exception occurred: {exception_to_str(e)}. "
                     f"If the module is a directory, consider creating an __init__.py."
                 )

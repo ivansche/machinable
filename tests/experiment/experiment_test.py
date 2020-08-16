@@ -66,3 +66,8 @@ def test_experiment_directory():
     )
     e.set_schedule()
     assert e.storage.config["directory"][:-2] == "test_project 20"
+
+
+def test_inline_execution():
+    experiment = ml.Experiment().component("not_registered", """test: 1""")
+    ml.execute(experiment, project="./test_project")

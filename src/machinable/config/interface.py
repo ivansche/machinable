@@ -5,6 +5,7 @@ from collections import OrderedDict
 import yaml
 from flatten_dict import unflatten
 
+from ..core import Component
 from ..config.mapping import config_map
 from ..experiment import ExperimentComponent
 from ..utils.dicts import update_dict
@@ -109,6 +110,15 @@ class ConfigInterface:
     def get_component(self, name, version=None, flags=None):
         if name is None:
             return None
+
+        if name not in self.data["components"]:
+            # inject
+            self.data["components"][name] = {
+                "module": name,
+                "class": ModuleClass(name, baseclass=Component),
+                "args": {},
+            }
+            self.data["components"]["@"][name] = name
 
         if name not in self.data["components"]:
             raise ValueError(
