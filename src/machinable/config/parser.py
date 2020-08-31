@@ -2,7 +2,14 @@ import importlib
 import inspect
 
 import regex
-from flatten_dict import unflatten
+
+try:
+    from flatten_dict import unflatten
+except ImportError:
+
+    def unflatten(d, *args, **kwargs):
+        return d
+
 
 from ..utils.dicts import get_or_fail, read_path_dict, update_dict
 from ..utils.formatting import exception_to_str, msg

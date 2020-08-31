@@ -6,9 +6,21 @@ import os
 import pickle
 import sys
 
-from ..config.loader import from_callable as load_config_from_callable
-from ..config.loader import from_file as load_config_file
-from ..config.loader import from_string as load_config_from_string
+# from ..config.loader import from_callable as load_config_from_callable
+# from ..config.loader import from_file as load_config_file
+# from ..config.loader import from_string as load_config_from_string
+def load_config_from_callable(*args, **kwargs):
+    return {}
+
+
+def load_config_file(*args, **kwargs):
+    return {}
+
+
+def load_config_from_string(*args, **kwargs):
+    return {}
+
+
 from ..config.parser import parse_module_list
 from ..core import Component as BaseComponent
 from ..core import Mixin as BaseMixin

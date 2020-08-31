@@ -1,5 +1,3 @@
-from multiprocessing import Pool
-
 from .engine import Engine
 
 
@@ -21,6 +19,8 @@ class NativeEngine(Engine):
         if self.processes <= 1:
             # standard execution
             return super(NativeEngine, self)._submit(execution)
+
+        from multiprocessing import Pool
 
         pool = Pool(processes=self.processes, maxtasksperchild=1)
         for index, result in pool.imap_unordered(

@@ -4,7 +4,6 @@ from datetime import datetime as dt
 from typing import Any, Callable, Union
 
 import pendulum
-import yaml
 
 from ..config.interface import ConfigInterface
 from ..core.exceptions import ExecutionException
@@ -531,6 +530,8 @@ class Execution(Jsonable):
         return encode_experiment_id(self.seed)
 
     def summary(self):
+        import yaml
+
         if len(self.schedule) == 0:
             self.set_schedule()
 

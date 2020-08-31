@@ -2,8 +2,14 @@ import copy
 import inspect
 from collections import OrderedDict
 
-import yaml
-from flatten_dict import unflatten
+
+try:
+    from flatten_dict import unflatten
+except ImportError:
+
+    def unflatten(d, *args, **kwargs):
+        return d
+
 
 from ..config.mapping import config_map
 from ..experiment import ExperimentComponent
@@ -37,6 +43,8 @@ class ConfigInterface:
         if not name.startswith("~") and not (
             name.startswith("_") and name.endswith("_")
         ):
+            import yaml
+
             return yaml.load(name, Loader=yaml.FullLoader)
 
         # from mixin

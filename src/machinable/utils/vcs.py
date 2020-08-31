@@ -1,6 +1,5 @@
 import os
 
-import sh
 
 # This following method is modified 3rd party source code from
 # https://github.com/IDSIA/sacred/blob/7897c664b1b93fa2e2b6f3af244dfee590b1342a/sacred/dependencies.py#L401.
@@ -54,6 +53,8 @@ def get_root_commit(filename):
         pass
 
     try:
+        import sh
+
         return sh.tail(sh.git("rev-list", "--parents", "HEAD", _cwd=wd), "-1").replace(
             "\n", ""
         )

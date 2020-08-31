@@ -1,6 +1,5 @@
 import os
 
-import yaml
 
 from machinable.utils.dicts import update_dict
 
@@ -8,6 +7,8 @@ _settings = None
 
 
 def get_settings(reload=False, file="~/.machinable/settings.yaml"):
+    import yaml
+
     global _settings
     if _settings is None or reload:
         try:
